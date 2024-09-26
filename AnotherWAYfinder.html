@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayfinder - Find Transport Nearby</title>
+    
+    <!-- Google Maps API: Using the actual API key provided -->
+    <script async 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBINe24LpbaNVllqavb9BxH6Kab4xVDjXI&callback=initMap&libraries=places"
+        defer>
+    </script>
+
+    <style>
+        /* General page styling */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Map container */
+        #map {
+            height: 50vh; /* Half the viewport height for the map */
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Main content section */
+        .content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Header styling */
+        h1 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        /* Recommended transport options */
+        .transport-options {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        /* Links to Google Maps or other resources */
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer area */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main content container -->
+    <div class="content">
+        <h1>Your Location and Nearby Transport Options</h1>
+        <!-- Map container -->
+        <div id="map"></div>
+        <!-- Display recommended transport options -->
+        <div class="transport-options">
+            Recommended Transport Options:<br>
+            <a id="google-maps-link" href="#" target="_blank">Open Google Maps for more directions</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Wayfinder. All rights reserved.
+    </footer>
+
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // Umhlanga's coordinates
+            const umhlanga = { lat: -29.7253, lng: 31.0651 };
+            
+            // Create the map centered on Umhlanga
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,  // Zoom level 14 for better city view
+                center: umhlanga,
+            });
+
+            // Add a marker at Umhlanga Rocks
+            const marker = new google.maps.Marker({
+                position: umhlanga,
+                map: map,
+                title: "You are here - Umhlanga Rocks",
+            });
+
+            // Set up Google Maps link with dynamic coordinates
+            const googleMapsLink = document.getElementById("google-maps-link");
+            googleMapsLink.href = `https://www.google.com/maps?q=${umhlanga.lat},${umhlanga.lng}`;
+        }
+    </script>
+</body>
+</html>
